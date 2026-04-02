@@ -17,6 +17,8 @@ public class BookManager : MonoBehaviour
     private bool isSolved = false;
 
     public GameObject doneText;
+    
+    public UnityEvent onPuzzleSolved;
 
     public void CheckPuzzle()
     {
@@ -36,7 +38,6 @@ public class BookManager : MonoBehaviour
         }
 
         isSolved = true;
-        doneText.SetActive(true);
-        Debug.Log("puzzle solved");
+        onPuzzleSolved.Invoke();
     }
 }
