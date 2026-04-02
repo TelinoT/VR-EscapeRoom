@@ -11,11 +11,6 @@ public class DrawerSlide : MonoBehaviour
         StartCoroutine(SlideGateDown());
     }
 
-    private void Start()
-    { 
-        OpenGate();    
-    }
-
     private IEnumerator SlideGateDown()
     {
         Vector3 targetPos = transform.localPosition + slideOffset;
