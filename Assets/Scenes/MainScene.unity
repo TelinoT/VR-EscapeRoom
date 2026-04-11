@@ -12044,7 +12044,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6571758433807029951, guid: b05f9d5c5b3a0441f9e9b63daca3cf5f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.35
+      value: 2.2
       objectReference: {fileID: 0}
     - target: {fileID: 6571758433807029951, guid: b05f9d5c5b3a0441f9e9b63daca3cf5f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12081,6 +12081,10 @@ PrefabInstance:
     - target: {fileID: 6571758433807029951, guid: b05f9d5c5b3a0441f9e9b63daca3cf5f, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6759811376989148763, guid: b05f9d5c5b3a0441f9e9b63daca3cf5f, type: 3}
+      propertyPath: m_CameraYOffset
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 8626075518642769051, guid: b05f9d5c5b3a0441f9e9b63daca3cf5f, type: 3}
       propertyPath: m_LocalPosition.y
