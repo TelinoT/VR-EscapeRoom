@@ -1,11 +1,15 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 using System.Collections;
 
 public class RayHider : MonoBehaviour
 {
     public InputActionReference teleportAimButton;
     public GameObject teleportRayObject;
+    
+    public XRBaseInteractor blockingInteractor;
     
     private void Start()
     {
@@ -18,27 +22,46 @@ public class RayHider : MonoBehaviour
         teleportAimButton.action.canceled += OnTeleportExecute;
     }
     
+    private void OnDisable()
+    {
+        teleportAimButton.action.started -= OnAimStart;
+        teleportAimButton.action.canceled -= OnTeleportExecute;
+    }
+    
     private void OnAimStart(InputAction.CallbackContext context)
     {
+        if (blockingInteractor != null && blockingInteractor.hasSelection)
+        {
+            return; 
+        }
+
         teleportRayObject.SetActive(true);
     }
     
     private void OnTeleportExecute(InputAction.CallbackContext context)
     {
-        StartCoroutine(TurnOffRayDelay());
+        XRBaseInteractor myInteractor = teleportRayObject.GetComponent<XRBaseInteractor>();
+        
+        if (myInteractor != null && myInteractor.hasSelection)
+        {
+            myInteractor.selectExited.AddListener(TurnOffAfterDrop);
+        }
+        else
+        {
+            StartCoroutine(TurnOffRayDelay());
+        }
     }
 
-    private void OnDisable()
+    private void TurnOffAfterDrop(SelectExitEventArgs args)
     {
-        teleportAimButton.action.started -= OnAimStart;
+        teleportRayObject.SetActive(false); 
         
-        teleportAimButton.action.canceled -= OnTeleportExecute;
+        args.interactorObject.selectExited.RemoveListener(TurnOffAfterDrop);
     }
     
-
     private IEnumerator TurnOffRayDelay()
     {
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(0.1f);
         teleportRayObject.SetActive(false);
     }
 }
