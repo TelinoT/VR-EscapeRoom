@@ -20,10 +20,20 @@ public class RayHider : MonoBehaviour
     {
         teleportAimButton.action.started += OnAimStart;
         teleportAimButton.action.canceled += OnTeleportExecute;
+        
+        if (blockingInteractor != null)
+        {
+            blockingInteractor.selectEntered.AddListener(ForceTurnOff);
+        }
     }
     
     private void OnDisable()
     {
+        if (blockingInteractor != null)
+        {
+            blockingInteractor.selectEntered.RemoveListener(ForceTurnOff);
+        }
+        
         teleportAimButton.action.started -= OnAimStart;
         teleportAimButton.action.canceled -= OnTeleportExecute;
     }
@@ -40,6 +50,8 @@ public class RayHider : MonoBehaviour
     
     private void OnTeleportExecute(InputAction.CallbackContext context)
     {
+        if (!teleportRayObject.activeSelf) return;
+        
         XRBaseInteractor myInteractor = teleportRayObject.GetComponent<XRBaseInteractor>();
         
         if (myInteractor != null && myInteractor.hasSelection)
@@ -62,6 +74,11 @@ public class RayHider : MonoBehaviour
     private IEnumerator TurnOffRayDelay()
     {
         yield return new WaitForSeconds(0.1f);
+        teleportRayObject.SetActive(false);
+    }
+    
+    private void ForceTurnOff(SelectEnterEventArgs args)
+    {
         teleportRayObject.SetActive(false);
     }
 }
