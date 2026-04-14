@@ -10312,8 +10312,48 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4305677855140423662, guid: 4341751daf16c594f8e7d27244abe1df, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305677855140423662, guid: 4341751daf16c594f8e7d27244abe1df, type: 3}
+      propertyPath: m_fontSize
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305677855140423662, guid: 4341751daf16c594f8e7d27244abe1df, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: c8ac1ed6123904112adeaf50e63c4731, type: 2}
+    - target: {fileID: 4305677855140423662, guid: 4341751daf16c594f8e7d27244abe1df, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305677855140423662, guid: 4341751daf16c594f8e7d27244abe1df, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305677855140423662, guid: 4341751daf16c594f8e7d27244abe1df, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 1693478669045529817, guid: c8ac1ed6123904112adeaf50e63c4731, type: 2}
+    - target: {fileID: 4305677855140423662, guid: 4341751daf16c594f8e7d27244abe1df, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305677855140423662, guid: 4341751daf16c594f8e7d27244abe1df, type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305677855140423663, guid: 4341751daf16c594f8e7d27244abe1df, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305677855140423663, guid: 4341751daf16c594f8e7d27244abe1df, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305677855140423663, guid: 4341751daf16c594f8e7d27244abe1df, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
