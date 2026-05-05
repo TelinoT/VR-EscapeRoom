@@ -78,6 +78,7 @@ public class Dial : MonoBehaviour
             // Save this position for the next frame
             previousHandDir = currentHandDir;
         }
+
     }
 
     public void OnReleased(SelectExitEventArgs args)
@@ -89,7 +90,7 @@ public class Dial : MonoBehaviour
 
         if (index > 0 && index <= chars.Length)
         {
-            phone.addNum(chars[index-1]);
+            phone.addNum(chars[index]);
         }
 
         returnRoutine = StartCoroutine(SpinBackToZero());
