@@ -20,7 +20,6 @@ public class Dial : MonoBehaviour
     private bool isGrabbed = false;
     private Transform handTransform;
     
-    // We use this to track the exact arc the hand makes on the dial's face
     private Vector3 previousHandDir;
     
     private float currentVisualAngle = 0f;
@@ -51,10 +50,8 @@ public class Dial : MonoBehaviour
         isGrabbed = true;
         handTransform = args.interactorObject.transform;
 
-        // Draw a line from the center of the dial to the hand
         Vector3 dirToHand = handTransform.position - transform.position;
         
-        // Project that line flat onto the face of the dial (transform.up is the dial's Y-axis pin)
         previousHandDir = Vector3.ProjectOnPlane(dirToHand, transform.up).normalized;
     }
 
@@ -62,20 +59,15 @@ public class Dial : MonoBehaviour
     {
         if (isGrabbed && handTransform != null)
         {
-            // Draw the new line to where the hand moved this frame
             Vector3 dirToHand = handTransform.position - transform.position;
             Vector3 currentHandDir = Vector3.ProjectOnPlane(dirToHand, transform.up).normalized;
 
-            // Magically calculate exactly how many degrees the hand rotated around the dial's pin
             float deltaAngle = Vector3.SignedAngle(previousHandDir, currentHandDir, transform.up);
             
-            // Add that movement to our total rotation
             currentVisualAngle += deltaAngle;
 
-            // Apply it to the Y axis!
             transform.localRotation = startRotation * Quaternion.Euler(0, currentVisualAngle, 0);
 
-            // Save this position for the next frame
             previousHandDir = currentHandDir;
         }
 

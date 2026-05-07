@@ -11,6 +11,7 @@ TagManager:
   - Compost
   - Flame
   - Trail
+  - Hammer
   layers:
   - Default
   - TransparentFX
