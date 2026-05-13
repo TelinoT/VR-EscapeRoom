@@ -2267,12 +2267,20 @@ PrefabInstance:
       value: 1801810542
       objectReference: {fileID: 0}
     - target: {fileID: 8647630311375954867, guid: e97db2d0c9847b248aa9914c68ccfa8f, type: 3}
+      propertyPath: m_text
+      value: "\u03B4"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8647630311375954867, guid: e97db2d0c9847b248aa9914c68ccfa8f, type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
       objectReference: {fileID: 0}
     - target: {fileID: 8976491859251369526, guid: e97db2d0c9847b248aa9914c68ccfa8f, type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
+      objectReference: {fileID: 0}
+    - target: {fileID: 8990801570412693089, guid: e97db2d0c9847b248aa9914c68ccfa8f, type: 3}
+      propertyPath: m_text
+      value: "\u03B1"
       objectReference: {fileID: 0}
     - target: {fileID: 8990801570412693089, guid: e97db2d0c9847b248aa9914c68ccfa8f, type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
@@ -14180,7 +14188,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6966535175198168352, guid: 19cbdbef6702d496cb3966b2e101f29c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 2.0122
       objectReference: {fileID: 0}
     - target: {fileID: 6966535175198168352, guid: 19cbdbef6702d496cb3966b2e101f29c, type: 3}
       propertyPath: m_LocalScale.y
@@ -14188,7 +14196,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6966535175198168352, guid: 19cbdbef6702d496cb3966b2e101f29c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3
+      value: 2.9877
       objectReference: {fileID: 0}
     - target: {fileID: 6966535175198168352, guid: 19cbdbef6702d496cb3966b2e101f29c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -17754,7 +17762,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6966535175198168352, guid: 19cbdbef6702d496cb3966b2e101f29c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 2.0116
       objectReference: {fileID: 0}
     - target: {fileID: 6966535175198168352, guid: 19cbdbef6702d496cb3966b2e101f29c, type: 3}
       propertyPath: m_LocalScale.y
@@ -17762,7 +17770,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6966535175198168352, guid: 19cbdbef6702d496cb3966b2e101f29c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1
+      value: -0.9883
       objectReference: {fileID: 0}
     - target: {fileID: 6966535175198168352, guid: 19cbdbef6702d496cb3966b2e101f29c, type: 3}
       propertyPath: m_LocalPosition.y
