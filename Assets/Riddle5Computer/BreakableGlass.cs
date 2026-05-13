@@ -6,7 +6,7 @@ public class BreakableGlass : MonoBehaviour
     public GameObject particles;
     public GameObject brokenGlass;
 
-    public float breakForce = 2.5f;
+    public float breakForce = 0.5f;
 
     private bool isBroken = false;
     
@@ -14,10 +14,11 @@ public class BreakableGlass : MonoBehaviour
     {
         if (isBroken) return;
 
-        if (collision.gameObject.tag == "Hammer")
+        if (collision.gameObject.CompareTag("Hammer"))
         {
+            
             float impactVelocity = collision.relativeVelocity.magnitude;
-
+            
             if (impactVelocity > breakForce)
             {
                 Break();
