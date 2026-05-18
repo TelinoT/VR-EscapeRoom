@@ -27,6 +27,7 @@ public class Dial : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        if(rb!= null) rb.isKinematic = true;
         grab = GetComponent<LimitedGrab>();
         
         startRotation = transform.localRotation;
@@ -52,7 +53,7 @@ public class Dial : MonoBehaviour
 
         Vector3 dirToHand = handTransform.position - transform.position;
         
-        previousHandDir = Vector3.ProjectOnPlane(dirToHand, transform.up).normalized;
+        previousHandDir = Vector3.ProjectOnPlane(dirToHand, transform.forward).normalized;
     }
 
     void Update()
@@ -60,14 +61,14 @@ public class Dial : MonoBehaviour
         if (isGrabbed && handTransform != null)
         {
             Vector3 dirToHand = handTransform.position - transform.position;
-            Vector3 currentHandDir = Vector3.ProjectOnPlane(dirToHand, transform.up).normalized;
-
-            float deltaAngle = Vector3.SignedAngle(previousHandDir, currentHandDir, transform.up);
+            Vector3 currentHandDir = Vector3.ProjectOnPlane(dirToHand, transform.forward).normalized;
+            
+            float deltaAngle = Vector3.SignedAngle(previousHandDir, currentHandDir, transform.forward);
             
             currentVisualAngle += deltaAngle;
 
-            transform.localRotation = startRotation * Quaternion.Euler(0, currentVisualAngle, 0);
-
+            transform.localRotation = startRotation * Quaternion.Euler(0, 0, currentVisualAngle);
+            
             previousHandDir = currentHandDir;
         }
 
@@ -96,15 +97,14 @@ public class Dial : MonoBehaviour
         {
             currentVisualAngle = Mathf.MoveTowards(currentVisualAngle, 0f, returnSpeed * Time.deltaTime);
             
-            transform.localRotation = startRotation * Quaternion.Euler(0, currentVisualAngle, 0);
+            transform.localRotation = startRotation * Quaternion.Euler(0, 0, currentVisualAngle);
             
             yield return null; 
         }
 
         currentVisualAngle = 0f;
         transform.localRotation = startRotation;
-        
-        rb.isKinematic = false;
+        //rb.isKinematic = false;
         returnRoutine = null;
     }
 }
