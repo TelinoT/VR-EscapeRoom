@@ -4767,12 +4767,12 @@ MonoBehaviour:
   marsSocket: {fileID: 130640610}
   neptuneSocket: {fileID: 1211910695}
   saturnSocket: {fileID: 866931722}
-  correctEarth: {fileID: 1185103370}
-  correctMars: {fileID: 661739811}
+  correctEarth: {fileID: 661739811}
+  correctMars: {fileID: 1185103370}
   correctNeptune: {fileID: 1333263233}
   correctSaturn: {fileID: 579007394}
-  earthStick: {fileID: 1802310593}
-  marsStick: {fileID: 425795596}
+  earthStick: {fileID: 425795596}
+  marsStick: {fileID: 1802310593}
   neptuneStick: {fileID: 1312631693}
   saturnStick: {fileID: 1932606307}
   targetEarthAngle: 315
@@ -11724,6 +11724,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 873120136}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &889110131 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2280478786440989536, guid: b05f9d5c5b3a0441f9e9b63daca3cf5f, type: 3}
+  m_PrefabInstance: {fileID: 1534429159892706495}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83e4e6cca11330d4088d729ab4fc9d9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &905534776
 GameObject:
   m_ObjectHideFlags: 0
@@ -29782,10 +29793,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 0}
-  m_Colliders: []
+  m_InteractionManager: {fileID: 889110131}
+  m_Colliders:
+  - {fileID: 5832509407714652714}
+  - {fileID: 5832509407714652715}
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 4294967295
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
@@ -31578,10 +31591,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 0}
-  m_Colliders: []
+  m_InteractionManager: {fileID: 889110131}
+  m_Colliders:
+  - {fileID: 7948671415979321087}
+  - {fileID: 7948671415979321089}
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 4294967295
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
@@ -32265,10 +32280,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 0}
-  m_Colliders: []
+  m_InteractionManager: {fileID: 889110131}
+  m_Colliders:
+  - {fileID: 9093391789138306181}
+  - {fileID: 9093391789138306182}
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 4294967295
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
@@ -32542,10 +32559,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 0}
-  m_Colliders: []
+  m_InteractionManager: {fileID: 889110131}
+  m_Colliders:
+  - {fileID: 9212352126657944731}
+  - {fileID: 9212352126657944733}
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 4294967295
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
