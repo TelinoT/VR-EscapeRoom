@@ -10,7 +10,8 @@ public class BombMachineManager : MonoBehaviour
     
     public float staggerDelay = 0.05f;
     
-    public Material riddleColorMaterial1;
+    public Material objectRiddleMaterial;
+    public Material phoneRiddleMaterial;
 
     void Awake()
     {
@@ -23,14 +24,24 @@ public class BombMachineManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        StartCoroutine(DelayedStart());
+        //StartCoroutine(DelayedStart());
     }
 
-    IEnumerator DelayedStart()
+    /*IEnumerator DelayedStart()
     {
         yield return new WaitForSeconds(5f);
         TriggerRollsByMaterial(riddleColorMaterial1);
         
+    }*/
+
+    public void ObjectRiddleDone()
+    {
+        TriggerRollsByMaterial(objectRiddleMaterial);
+    }
+    
+    public void PhoneRiddleDone()
+    {
+        TriggerRollsByMaterial(phoneRiddleMaterial);
     }
 
     public void RegisterRoll(RotatingRoll roll)

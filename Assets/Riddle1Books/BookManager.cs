@@ -11,6 +11,8 @@ public class BookManager : MonoBehaviour
         public XRSocketInteractor socket;
         public BookID expectedBook;
     }
+
+    public Material riddleDoneMaterial;
     
     public BookSlot[] slots;
 
@@ -35,6 +37,11 @@ public class BookManager : MonoBehaviour
 
             if (currentBook.spot != slot.expectedBook.spot) return;
 
+        }
+        
+        if (BombMachineManager.Instance != null)
+        {
+            BombMachineManager.Instance.TriggerRollsByMaterial(riddleDoneMaterial);
         }
 
         isSolved = true;
