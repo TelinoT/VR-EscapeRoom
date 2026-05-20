@@ -106,10 +106,12 @@ public class SolarSystemRiddleManager : MonoBehaviour
         // Snap to final position to be perfectly accurate
         sunUpperHalf.localPosition = endPos;
 
+        hammer.SetActive(true);
+
         // Enable picking up the hammer (Assuming it has an XRGrabInteractable)
-        if (hammer.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>() != null)
+        if (hammer.GetComponent<LimitedGrab>() != null)
         {
-            hammer.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>().enabled = true;
+            hammer.GetComponent<LimitedGrab>().enabled = true;
         }
     }
 }
