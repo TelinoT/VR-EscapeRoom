@@ -92,7 +92,7 @@ public class Lightswitch : XRSimpleInteractable
     
     private IEnumerator ButtonPressAnimation()
     {
-        transform.localPosition = originalPosition + new Vector3(0, 0, pushDistance);
+        transform.localPosition = originalPosition + new Vector3(pushDistance, 0, 0);
         
         yield return new WaitForSeconds(1f);
         
