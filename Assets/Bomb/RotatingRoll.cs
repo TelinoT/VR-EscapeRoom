@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class RotatingRoll : MonoBehaviour
@@ -5,7 +6,7 @@ public class RotatingRoll : MonoBehaviour
     [Header("Rotation Settings")]
     public float rotationSpeed = 100f;
     
-    private Material myMaterial;
+    public Material myMaterial;
     private bool shouldRotate = false;
 
     void Awake()
@@ -22,9 +23,13 @@ public class RotatingRoll : MonoBehaviour
                 }
             }
         }
+    }
 
+    private void Start()
+    {
         if (BombMachineManager.Instance != null)
         {
+            Debug.Log("is gonna register");
             BombMachineManager.Instance.RegisterRoll(this);
         }
     }

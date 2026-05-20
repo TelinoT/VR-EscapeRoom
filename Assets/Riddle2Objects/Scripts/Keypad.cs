@@ -14,27 +14,33 @@ public class Keypad : MonoBehaviour
     
     public bool isGreek = false;
 
+    private string greekInput;
+
     public void ButtonPressed(string value)
     {
-		if(isGreek){
-			value = ConvertToGreekLetter(value);
-		}	
-
-        currentInput += value;	
+	    currentInput += value;	
 
         displayText.text = currentInput;
+        
+        if(isGreek){
+	        value = ConvertToGreekLetter(value);
+	        greekInput += value;
+	        displayText.text = greekInput;
+        }
 
         if (currentInput.Length == correctCode.Length)
         {
             if (currentInput.Equals(correctCode))
             {
                 onCorrect.Invoke();
+                Debug.Log("invoked correct");
             }
             else
             {
                 onWrong.Invoke();
             }
             currentInput = "";
+            greekInput = "";
         }
     }
 

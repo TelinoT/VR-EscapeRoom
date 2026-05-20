@@ -37,6 +37,7 @@ public class BombMachineManager : MonoBehaviour
     public void ObjectRiddleDone()
     {
         TriggerRollsByMaterial(objectRiddleMaterial);
+        Debug.Log("Object Riddle Done");
     }
     
     public void PhoneRiddleDone()
