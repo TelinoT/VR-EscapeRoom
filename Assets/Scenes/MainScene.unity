@@ -18592,7 +18592,7 @@ MonoBehaviour:
   - {fileID: 1154375540}
   - {fileID: 581225116}
   dimmedLight: 0.4
-  pushDistance: -0.1
+  pushDistance: 0.1
 --- !u!65 &1343686195
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24954,6 +24954,10 @@ PrefabInstance:
       propertyPath: objectRiddleMaterial
       value: 
       objectReference: {fileID: -6087771358165109452, guid: 29f962d45248e4b1b8b211daed1f6169, type: 3}
+    - target: {fileID: 2018804802818111381, guid: d4ef8689a4439408390e0741adf33413, type: 3}
+      propertyPath: solarSystemRiddleMaterial
+      value: 
+      objectReference: {fileID: 637949407474519127, guid: 29f962d45248e4b1b8b211daed1f6169, type: 3}
     - target: {fileID: 6212079512082271239, guid: d4ef8689a4439408390e0741adf33413, type: 3}
       propertyPath: m_Name
       value: BombGalaxy3000+

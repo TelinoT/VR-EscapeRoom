@@ -113,5 +113,10 @@ public class SolarSystemRiddleManager : MonoBehaviour
         {
             hammer.GetComponent<LimitedGrab>().enabled = true;
         }
+        
+        if (BombMachineManager.Instance != null)
+        {
+            BombMachineManager.Instance.SolarSystemRiddleDone();
+        }
     }
 }

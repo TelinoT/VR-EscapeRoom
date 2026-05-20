@@ -12,6 +12,7 @@ public class BombMachineManager : MonoBehaviour
     
     public Material objectRiddleMaterial;
     public Material phoneRiddleMaterial;
+    public Material solarSystemRiddleMaterial;
 
     void Awake()
     {
@@ -43,6 +44,11 @@ public class BombMachineManager : MonoBehaviour
     public void PhoneRiddleDone()
     {
         TriggerRollsByMaterial(phoneRiddleMaterial);
+    }
+    
+    public void SolarSystemRiddleDone()
+    {
+        TriggerRollsByMaterial(solarSystemRiddleMaterial);
     }
 
     public void RegisterRoll(RotatingRoll roll)
