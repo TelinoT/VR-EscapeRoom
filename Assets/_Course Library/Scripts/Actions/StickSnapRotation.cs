@@ -1,60 +1,113 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class StickSnapRotation : MonoBehaviour
 {
     [Header("Setup")]
-    [Tooltip("Drag the Pivot_Stick_Large (the parent) here")]
+    [Tooltip("The parent pivot group (e.g., Pivot_Stick_Middle_Long) that needs to turn.")]
     public Transform pivotToRotate; 
     
-    [Tooltip("Drag the Sun_lowerHalf here")]
+    [Tooltip("Drag the central Sun_lowerHalf transform here.")]
     public Transform centerSun; 
 
-    private UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable interactable;
+    [Header("Movement Settings")]
+    [Tooltip("The speed the arm glides between mechanical snap slots (degrees per second).")]
+    public float travelSpeed = 180f;
+
+    private XRSimpleInteractable simpleInteractable;
     private UnityEngine.XR.Interaction.Toolkit.Interactors.IXRSelectInteractor currentInteractor = null;
-    private const float SNAP_ANGLE = 15f; // 360 degrees / 24 positions = 15
+    
+    private const float SNAP_ANGLE = 15f; 
+
+    private float initialGrabHandAngle = 0f;
+    private float initialPivotWorldAngle = 0f;
+    
+    // Tracks the targeted 15-degree slot assignment mathematically
+    private float targetSnappedAngle = 0f;
+    private float currentVisualAngle = 0f;
 
     void Awake()
     {
-        // Automatically find the interactable on this stick
-        interactable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
-        interactable.selectEntered.AddListener(OnGrab);
-        interactable.selectExited.AddListener(OnRelease);
+        simpleInteractable = GetComponent<XRSimpleInteractable>();
+        
+        if (simpleInteractable != null)
+        {
+            simpleInteractable.selectEntered.AddListener(OnStickActivated);
+            simpleInteractable.selectExited.AddListener(OnStickDeactivated);
+        }
     }
 
-    void OnGrab(SelectEnterEventArgs args)
+    void Start()
     {
-        // The player grabbed the stick. Record which hand is grabbing it.
+        if (pivotToRotate != null)
+        {
+            // Initialize our tracking angles to match the scene placement
+            targetSnappedAngle = pivotToRotate.rotation.eulerAngles.y;
+            currentVisualAngle = targetSnappedAngle;
+        }
+    }
+
+    private void OnStickActivated(SelectEnterEventArgs args)
+    {
         currentInteractor = args.interactorObject;
+
+        if (currentInteractor != null && pivotToRotate != null && centerSun != null)
+        {
+            Vector3 handPos = currentInteractor.transform.position;
+            Vector3 directionToHand = handPos - centerSun.position;
+            directionToHand.y = 0;
+
+            if (directionToHand.sqrMagnitude > 0.001f)
+            {
+                initialGrabHandAngle = Mathf.Atan2(directionToHand.x, directionToHand.z) * Mathf.Rad2Deg;
+            }
+
+            initialPivotWorldAngle = targetSnappedAngle;
+        }
     }
 
-    void OnRelease(SelectExitEventArgs args)
+    private void OnStickDeactivated(SelectExitEventArgs args)
     {
-        // The player let go.
         currentInteractor = null;
     }
 
     void Update()
     {
-        // If a hand is currently holding the stick...
-        if (currentInteractor != null)
+        if (pivotToRotate == null) return;
+
+        // 1. Calculate target snapping indices only while actively being dragged
+        if (currentInteractor != null && centerSun != null)
         {
-            // 1. Find where the player's hand is relative to the sun
             Vector3 handPos = currentInteractor.transform.position;
-            Vector3 direction = handPos - centerSun.position;
-            
-            // Ignore height (Y) so we only calculate the flat circle rotation
-            direction.y = 0; 
+            Vector3 directionToHand = handPos - centerSun.position;
+            directionToHand.y = 0;
 
-            // 2. Calculate the exact angle of the hand from the center
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+            if (directionToHand.sqrMagnitude > 0.001f)
+            {
+                float currentHandAngle = Mathf.Atan2(directionToHand.x, directionToHand.z) * Mathf.Rad2Deg;
+                float angleDelta = currentHandAngle - initialGrabHandAngle;
+                float targetWorldAngle = initialPivotWorldAngle + angleDelta;
 
-            // 3. Round that angle to the nearest 15 degrees to create the "snap" effect
-            float snappedAngle = Mathf.Round(targetAngle / SNAP_ANGLE) * SNAP_ANGLE;
+                // Under the hood, this target variable STILL instantly jumps by 15 degrees
+                targetSnappedAngle = Mathf.Round(targetWorldAngle / SNAP_ANGLE) * SNAP_ANGLE;
+            }
+        }
 
-            // 4. Smoothly rotate the PARENT PIVOT to that snapped angle
-            Quaternion targetRotation = Quaternion.Euler(0, snappedAngle, 0);
-            pivotToRotate.rotation = Quaternion.Lerp(pivotToRotate.rotation, targetRotation, Time.deltaTime * 10f);
+        // 2. SMOOTH TRANSIT: Move smoothly from our current visual position to the hard targets
+        // Mathf.MoveTowardsAngle automatically handles 360 to 0 wrap-arounds smoothly!
+        currentVisualAngle = Mathf.MoveTowardsAngle(currentVisualAngle, targetSnappedAngle, travelSpeed * Time.deltaTime);
+
+        // 3. Force the clean world coordinate translation onto the parent transform row
+        pivotToRotate.rotation = Quaternion.Euler(0, currentVisualAngle, 0);
+    }
+
+    void OnDestroy()
+    {
+        if (simpleInteractable != null)
+        {
+            simpleInteractable.selectEntered.RemoveListener(OnStickActivated);
+            simpleInteractable.selectExited.RemoveListener(OnStickDeactivated);
         }
     }
 }

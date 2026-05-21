@@ -1,5 +1,4 @@
 using UnityEngine;
-
 using System.Collections;
 
 public class SolarSystemRiddleManager : MonoBehaviour
@@ -16,13 +15,14 @@ public class SolarSystemRiddleManager : MonoBehaviour
     public GameObject correctNeptune;
     public GameObject correctSaturn;
 
-    [Header("Sticks to Check Rotation")]
-    public Transform earthStick;
-    public Transform marsStick;
-    public Transform neptuneStick;
-    public Transform saturnStick;
+    [Header("Pivots to Check Rotation")]
+    [Tooltip("CRITICAL: Drag the Pivot_Stick_... objects here instead of the raw meshes!")]
+    public Transform earthPivot;
+    public Transform marsPivot;
+    public Transform neptunePivot;
+    public Transform saturnPivot;
 
-    [Header("Target Angles (0 to 360)")]
+    [Header("Target World Angles (0 to 360)")]
     public float targetEarthAngle; 
     public float targetMarsAngle;
     public float targetNeptuneAngle;
@@ -36,7 +36,6 @@ public class SolarSystemRiddleManager : MonoBehaviour
 
     void Update()
     {
-        // Constantly check if the puzzle is solved, but only if it hasn't been solved yet
         if (!isSolved && CheckSolution())
         {
             SolveRiddle();
@@ -45,42 +44,40 @@ public class SolarSystemRiddleManager : MonoBehaviour
 
     bool CheckSolution()
     {
+        
         // --- 1. EARTH CHECK ---
-        // Does the socket have an object? And is that object the Earth?
         if (!earthSocket.hasSelection || earthSocket.interactablesSelected[0].transform.gameObject != correctEarth) 
             return false;
-        // Is the stick rotated to the correct angle?
-        if (!IsAngleCorrect(earthStick.localEulerAngles.y, targetEarthAngle)) 
+        // FIXED: Swapped to eulerAngles.y to read our clean world space assignments
+        if (!IsAngleCorrect(earthPivot.eulerAngles.y-180, targetEarthAngle)) 
             return false;
-
+        
         // --- 2. MARS CHECK ---
         if (!marsSocket.hasSelection || marsSocket.interactablesSelected[0].transform.gameObject != correctMars) 
             return false;
-        if (!IsAngleCorrect(marsStick.localEulerAngles.y, targetMarsAngle)) 
+        if (!IsAngleCorrect(marsPivot.eulerAngles.y-180, targetMarsAngle)) 
             return false;
 
         // --- 3. NEPTUNE CHECK ---
         if (!neptuneSocket.hasSelection || neptuneSocket.interactablesSelected[0].transform.gameObject != correctNeptune) 
             return false;
-        if (!IsAngleCorrect(neptuneStick.localEulerAngles.y, targetNeptuneAngle)) 
+        if (!IsAngleCorrect(neptunePivot.eulerAngles.y-180, targetNeptuneAngle)) 
             return false;
 
         // --- 4. SATURN CHECK ---
         if (!saturnSocket.hasSelection || saturnSocket.interactablesSelected[0].transform.gameObject != correctSaturn) 
             return false;
-        if (!IsAngleCorrect(saturnStick.localEulerAngles.y, targetSaturnAngle)) 
+        if (!IsAngleCorrect(saturnPivot.eulerAngles.y-180, targetSaturnAngle)) 
             return false;
 
-        // If it passes EVERY check above without returning false, the puzzle is correct!
         return true; 
     }
 
     bool IsAngleCorrect(float current, float target)
     {
-        // Calculate the shortest difference between the current angle and target angle
         float diff = Mathf.DeltaAngle(current, target);
-        // Returns true if the stick is within 1 degree of the target angle (allows for tiny floating point errors)
-        return Mathf.Abs(diff) < 1.0f; 
+        // Generous 1.5 degree buffer to account for smooth travel lerping adjustments
+        return Mathf.Abs(diff) < 1.5f; 
     }
 
     void SolveRiddle()
@@ -92,9 +89,9 @@ public class SolarSystemRiddleManager : MonoBehaviour
     IEnumerator OpenSunSequence()
     {
         Vector3 startPos = sunUpperHalf.localPosition;
-        Vector3 endPos = startPos + new Vector3(0, 0.5f, 0); // Adjust the 0.5f if you want it to open higher
+        Vector3 endPos = startPos + new Vector3(0, 0.5f, 0);
         float timeElasped = 0;
-        float duration = 2.0f; // Takes 2 seconds to open
+        float duration = 2.0f;
 
         while (timeElasped < duration) 
         {
@@ -103,12 +100,9 @@ public class SolarSystemRiddleManager : MonoBehaviour
             yield return null;
         }
 
-        // Snap to final position to be perfectly accurate
         sunUpperHalf.localPosition = endPos;
-
         hammer.SetActive(true);
 
-        // Enable picking up the hammer (Assuming it has an XRGrabInteractable)
         if (hammer.GetComponent<LimitedGrab>() != null)
         {
             hammer.GetComponent<LimitedGrab>().enabled = true;
