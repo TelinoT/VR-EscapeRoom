@@ -14,6 +14,29 @@ public class BombMachineManager : MonoBehaviour
     public Material phoneRiddleMaterial;
     public Material solarSystemRiddleMaterial;
 
+    public Transform sounds;
+
+    public int riddlesSolved = 0;
+
+    public void riddlesUp()
+    {
+        riddlesSolved++;
+        ActivateSounds();
+    }
+
+    public void ActivateSounds()
+    {
+        int amountToTurnOn = riddlesSolved * 3;
+        foreach (Transform sound in sounds)
+        {
+            if (amountToTurnOn != 0)
+            {
+                sound.gameObject.SetActive(true);
+                amountToTurnOn--;
+            }
+        }
+    }
+
     void Awake()
     {
         if (Instance == null)

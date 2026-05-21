@@ -54,6 +54,8 @@ public class Dial : MonoBehaviour
         Vector3 dirToHand = handTransform.position - transform.position;
         
         previousHandDir = Vector3.ProjectOnPlane(dirToHand, transform.forward).normalized;
+
+        this.GetComponent<AudioSource>().Play();
     }
 
     void Update()
@@ -87,6 +89,8 @@ public class Dial : MonoBehaviour
         }
 
         returnRoutine = StartCoroutine(SpinBackToZero());
+        
+        this.GetComponent<AudioSource>().Stop();
     }
     
     private IEnumerator SpinBackToZero()

@@ -92,6 +92,7 @@ public class Lightswitch : XRSimpleInteractable
     
     private IEnumerator ButtonPressAnimation()
     {
+        this.GetComponent<AudioSource>().Play();
         transform.localPosition = originalPosition + new Vector3(pushDistance, 0, 0);
         
         yield return new WaitForSeconds(1f);

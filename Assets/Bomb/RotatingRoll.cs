@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class RotatingRoll : MonoBehaviour
 {
-    [Header("Rotation Settings")]
     public float rotationSpeed = 100f;
     
     public Material myMaterial;
@@ -29,7 +28,6 @@ public class RotatingRoll : MonoBehaviour
     {
         if (BombMachineManager.Instance != null)
         {
-            Debug.Log("is gonna register");
             BombMachineManager.Instance.RegisterRoll(this);
         }
     }

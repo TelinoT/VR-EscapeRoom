@@ -16,6 +16,8 @@ public class BreakableGlass : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Hammer"))
         {
+
+            this.GetComponent<AudioSource>().Play();
             
             float impactVelocity = collision.relativeVelocity.magnitude;
             

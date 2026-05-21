@@ -117,6 +117,7 @@ public class SolarSystemRiddleManager : MonoBehaviour
         if (BombMachineManager.Instance != null)
         {
             BombMachineManager.Instance.SolarSystemRiddleDone();
+            BombMachineManager.Instance.riddlesUp();
         }
     }
 }

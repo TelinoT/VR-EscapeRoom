@@ -30,12 +30,14 @@ public class HandKurbel : MonoBehaviour
 
         Vector3 dirToHand = handTransform.position - transform.position;
         previousHandDir = Vector3.ProjectOnPlane(dirToHand, transform.up).normalized;
+        this.gameObject.GetComponent<AudioSource>().Play();
     }
 
     private void StopCrank(SelectExitEventArgs args)
     {
         isGrabbed = false;
         handTransform = null;
+        this.gameObject.GetComponent<AudioSource>().Stop();
     }
 
     void Update()

@@ -24,6 +24,11 @@ public class KeypadButtons : XRSimpleInteractable
         
         meshRenderer.material = touchMaterial;
         keypad.ButtonPressed(value);
+
+        if (this.GetComponent<AudioSource>() != null)
+        {
+            this.GetComponent<AudioSource>().Play();
+        }
     }
 
     protected override void OnHoverExited(HoverExitEventArgs args)
