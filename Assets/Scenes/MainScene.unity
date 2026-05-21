@@ -34917,7 +34917,6 @@ GameObject:
   - component: {fileID: 9093391789138306181}
   - component: {fileID: 9093391789138306180}
   - component: {fileID: 9093391789138306183}
-  - component: {fileID: 9093391789138306184}
   m_Layer: 0
   m_Name: Stick_Middle_Short
   m_TagString: Untagged
@@ -35407,7 +35406,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6759811376989148763, guid: b05f9d5c5b3a0441f9e9b63daca3cf5f, type: 3}
       propertyPath: m_CameraYOffset
-      value: 2
+      value: 2.15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -38113,7 +38112,6 @@ GameObject:
   - component: {fileID: 5832509407714652714}
   - component: {fileID: 5832509407714652713}
   - component: {fileID: 5832509407714652716}
-  - component: {fileID: 5832509407714652717}
   m_Layer: 0
   m_Name: Stick_Middle_Long
   m_TagString: Untagged
@@ -38345,6 +38343,8 @@ GameObject:
   - component: {fileID: 3463280137393423716}
   - component: {fileID: 4697348497037182183}
   - component: {fileID: 2956592950973994296}
+  - component: {fileID: 4716663530652562969}
+  - component: {fileID: 4716663530652562968}
   m_Layer: 0
   m_Name: Platte
   m_TagString: Untagged
@@ -38352,6 +38352,109 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4716663530652562968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4716663530652562967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38f6bf3d943ac7945842268c9ef1dca6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation.TeleportationArea
+  m_InteractionManager: {fileID: 0}
+  m_Colliders: []
+  m_InteractionLayers:
+    m_Bits: 2147483648
+  m_DistanceCalculationMode: 1
+  m_SelectMode: 1
+  m_FocusMode: 1
+  m_CustomReticle: {fileID: 3521457681945940986, guid: 493691fe396bc5c40900e8a234c5c60e, type: 3}
+  m_AllowGazeInteraction: 0
+  m_AllowGazeSelect: 0
+  m_OverrideGazeTimeToSelect: 0
+  m_GazeTimeToSelect: 0.5
+  m_OverrideTimeToAutoDeselectGaze: 0
+  m_TimeToAutoDeselectGaze: 3
+  m_AllowGazeAssistance: 0
+  m_FirstHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FirstSelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastSelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FirstFocusEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastFocusExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FocusEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FocusExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Activated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Deactivated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_StartingHoverFilters: []
+  m_StartingSelectFilters: []
+  m_StartingInteractionStrengthFilters: []
+  m_TeleportationProvider: {fileID: 1392185761}
+  m_MatchOrientation: 0
+  m_MatchDirectionalInput: 0
+  m_TeleportTrigger: 0
+  m_FilterSelectionByHitNormal: 0
+  m_UpNormalToleranceDegrees: 30
+  m_Teleporting:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!64 &4716663530652562969
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4716663530652562967}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 186651012793723772, guid: e8622afa91e144b29b8c22e698e730e7, type: 3}
 --- !u!23 &4758519821081262157
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -39523,20 +39626,6 @@ BoxCollider:
   m_Size: {x: 0.36817744, y: 0.32078138, z: 2.59}
   m_Center: {x: 2.3840625, y: 0.007879752, z: 1.3200002}
 --- !u!114 &5832509407714652716
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4463217724441390179}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 955c32bd316e4c44b82979e8459e35de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pivotToRotate: {fileID: 1932606307}
-  centerSun: {fileID: 8563001301279044817}
---- !u!114 &5832509407714652717
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42098,7 +42187,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
@@ -42945,20 +43034,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pivotToRotate: {fileID: 1802310593}
   centerSun: {fileID: 8563001301279044817}
---- !u!114 &9093391789138306184
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1064311073140321622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 955c32bd316e4c44b82979e8459e35de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pivotToRotate: {fileID: 1802310593}
-  centerSun: {fileID: 8563001301279044817}
 --- !u!33 &9094809334451424757
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -43034,7 +43109,6 @@ GameObject:
   - component: {fileID: 9212352126657944731}
   - component: {fileID: 9212352126657944733}
   - component: {fileID: 9212352126657944734}
-  - component: {fileID: 9212352126657944735}
   m_Layer: 0
   m_Name: Stick_Small
   m_TagString: Untagged
@@ -43159,20 +43233,6 @@ BoxCollider:
   m_Size: {x: 0.80412775, y: 0.45643914, z: 0.079949476}
   m_Center: {x: -0.5624791, y: 0.0008984418, z: 0.1649726}
 --- !u!114 &9212352126657944734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9212352126657944730}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 955c32bd316e4c44b82979e8459e35de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pivotToRotate: {fileID: 425795596}
-  centerSun: {fileID: 8563001301279044817}
---- !u!114 &9212352126657944735
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
