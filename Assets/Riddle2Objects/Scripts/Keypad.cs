@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Events;
@@ -37,6 +38,7 @@ public class Keypad : MonoBehaviour
             }
             else
             {
+	            StartCoroutine(waitABit());
                 onWrong.Invoke();
             }
             currentInput = "";
@@ -47,6 +49,12 @@ public class Keypad : MonoBehaviour
     public void Incorrect()
     {
         Debug.Log("Incorrect code");
+    }
+
+    IEnumerator waitABit()
+    {
+	    yield return new WaitForSeconds(1f);
+	    displayText.text = "";
     }
 
 	public string ConvertToGreekLetter(string inputNumber)

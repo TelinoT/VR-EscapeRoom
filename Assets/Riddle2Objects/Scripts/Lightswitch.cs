@@ -19,6 +19,8 @@ public class Lightswitch : XRSimpleInteractable
 
     private Vector3 originalPosition;
 
+    private bool canClick = true;
+
     protected override void Awake()
     {
         base.Awake();
@@ -43,16 +45,21 @@ public class Lightswitch : XRSimpleInteractable
     protected override void OnSelectEntered(SelectEnterEventArgs args)
     {
         base.OnSelectEntered(args);
-        ToggleLights();
-        
+
+        if (canClick)
+        {
+            canClick = false;
+            ToggleLights();   
+        }
     }
     
     protected override void OnHoverEntered(HoverEnterEventArgs args)
     {
         base.OnHoverEntered(args);
         
-        if (args.interactorObject is UnityEngine.XR.Interaction.Toolkit.Interactors.XRDirectInteractor)
+        if (args.interactorObject is UnityEngine.XR.Interaction.Toolkit.Interactors.XRDirectInteractor  && canClick)
         {
+            canClick = false;
             ToggleLights();
         }
     }
@@ -98,5 +105,7 @@ public class Lightswitch : XRSimpleInteractable
         yield return new WaitForSeconds(1f);
         
         transform.localPosition = originalPosition;
+
+        canClick = true;
     }
 }
