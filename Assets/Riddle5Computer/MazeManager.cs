@@ -20,6 +20,8 @@ public class MazeManager : MonoBehaviour
 
     private bool isWon = false;
 
+    public GameObject PoweredOnStuff;
+
     public GameObject finalSequence;
 
     void Start()
@@ -77,7 +79,12 @@ public class MazeManager : MonoBehaviour
         {
             isWon = true;
             winScreen.SetActive(true); // Trigger your custom graphic!
-            BombMachineManager.Instance.ComputerRiddleDone();
+            PoweredOnStuff.SetActive(false);
+            if (BombMachineManager.Instance != null)
+            {
+                BombMachineManager.Instance.ComputerRiddleDone();
+                BombMachineManager.Instance.riddlesUp();
+            }
             finalSequence.SetActive(true);
         }
     }

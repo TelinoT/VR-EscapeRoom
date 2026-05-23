@@ -17,12 +17,18 @@ public class HandKurbel : MonoBehaviour
 
     public GameObject noPower;
     public GameObject powering;
+    
+    // Cache the baseline layout rotation of the model
+    private Quaternion startRotation;
 
     void Awake()
     {
         grab = GetComponent<LimitedGrab>();
         grab.selectEntered.AddListener(StartCrank);
         grab.selectExited.AddListener(StopCrank);
+        
+        // Lock in whatever rotation offset the model has in the inspector
+        startRotation = transform.localRotation;
     }
 
     private void StartCrank(SelectEnterEventArgs args)
@@ -32,9 +38,11 @@ public class HandKurbel : MonoBehaviour
         handTransform = args.interactorObject.transform;
 
         Vector3 dirToHand = handTransform.position - transform.position;
-        previousHandDir = Vector3.ProjectOnPlane(dirToHand, transform.up).normalized;
-        this.gameObject.GetComponent<AudioSource>().Play();
         
+        // FIXED: Project onto the Z-axis (forward) because that is the axle we are rotating around
+        previousHandDir = Vector3.ProjectOnPlane(dirToHand, transform.forward).normalized;
+        
+        this.gameObject.GetComponent<AudioSource>().Play();
         noPower.SetActive(false);
         powering.SetActive(true);
     }
@@ -51,11 +59,16 @@ public class HandKurbel : MonoBehaviour
         if (isGrabbed && !isFinished)
         {
             Vector3 dirToHand = handTransform.position - transform.position;
-            Vector3 currentHandDir = Vector3.ProjectOnPlane(dirToHand, transform.up).normalized;
+            
+            // FIXED: Track relative to the stable Z-axis (forward) axle
+            Vector3 currentHandDir = Vector3.ProjectOnPlane(dirToHand, transform.forward).normalized;
 
-            float deltaAngle = Vector3.SignedAngle(previousHandDir, currentHandDir, transform.up);
+            // Calculate how far the wrist twisted this frame
+            float deltaAngle = Vector3.SignedAngle(previousHandDir, currentHandDir, transform.forward);
             currentRotation += deltaAngle;
-            transform.localRotation = Quaternion.Euler(-90, currentRotation, 0);
+            
+            // Apply the new accumulated rotation directly to the Z-axis of the model's original baseline
+            transform.localRotation = startRotation * Quaternion.Euler(0, 0, currentRotation);
 
             previousHandDir = currentHandDir;
 
@@ -75,3 +88,4 @@ public class HandKurbel : MonoBehaviour
         powering.SetActive(false);
     }
 }
+
