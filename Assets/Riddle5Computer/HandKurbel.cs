@@ -55,7 +55,7 @@ public class HandKurbel : MonoBehaviour
 
             float deltaAngle = Vector3.SignedAngle(previousHandDir, currentHandDir, transform.up);
             currentRotation += deltaAngle;
-            transform.localRotation = Quaternion.Euler(0, currentRotation, 0);
+            transform.localRotation = Quaternion.Euler(-90, currentRotation, 0);
 
             previousHandDir = currentHandDir;
 
