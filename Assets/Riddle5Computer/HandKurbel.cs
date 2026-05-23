@@ -15,6 +15,9 @@ public class HandKurbel : MonoBehaviour
     private bool isGrabbed = false;
     private bool isFinished = false;
 
+    public GameObject noPower;
+    public GameObject powering;
+
     void Awake()
     {
         grab = GetComponent<LimitedGrab>();
@@ -31,6 +34,9 @@ public class HandKurbel : MonoBehaviour
         Vector3 dirToHand = handTransform.position - transform.position;
         previousHandDir = Vector3.ProjectOnPlane(dirToHand, transform.up).normalized;
         this.gameObject.GetComponent<AudioSource>().Play();
+        
+        noPower.SetActive(false);
+        powering.SetActive(true);
     }
 
     private void StopCrank(SelectExitEventArgs args)
@@ -66,5 +72,6 @@ public class HandKurbel : MonoBehaviour
         isGrabbed = false;
         onPowerThresholdReached.Invoke();
         Debug.Log("Power Restored!");
+        powering.SetActive(false);
     }
 }

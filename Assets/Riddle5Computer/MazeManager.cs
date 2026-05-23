@@ -20,6 +20,8 @@ public class MazeManager : MonoBehaviour
 
     private bool isWon = false;
 
+    public GameObject finalSequence;
+
     void Start()
     {
         // Ensure the win screen is hidden when the game starts
@@ -37,7 +39,6 @@ public class MazeManager : MonoBehaviour
         if (IsPositionWalkable(targetPosition))
         {
             snake.anchoredPosition = targetPosition;
-            snake.up = direction; // Rotates Alan Turing to face the movement direction
             CheckWinCondition();
         }
     }
@@ -76,6 +77,8 @@ public class MazeManager : MonoBehaviour
         {
             isWon = true;
             winScreen.SetActive(true); // Trigger your custom graphic!
+            BombMachineManager.Instance.ComputerRiddleDone();
+            finalSequence.SetActive(true);
         }
     }
 }

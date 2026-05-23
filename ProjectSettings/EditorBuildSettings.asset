@@ -80,6 +80,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: a55a327c969924662bf084b602ffdccf
+  - enabled: 0
+    path: Assets/Scenes/Copy of Mainscene mateo.unity
+    guid: e16c29fe61160b943beb1d3be791ec84
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: e3f999c3abbcc41c99f610f88fbd07bd, type: 2}
     Unity.XR.OpenVR.Settings: {fileID: 11400000, guid: 5d38af9b0bb79f242a67cf0b7307cace, type: 2}

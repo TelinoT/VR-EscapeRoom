@@ -13,6 +13,7 @@ public class BombMachineManager : MonoBehaviour
     public Material objectRiddleMaterial;
     public Material phoneRiddleMaterial;
     public Material solarSystemRiddleMaterial;
+    public Material computerRiddleMaterial;
 
     public Transform sounds;
 
@@ -62,6 +63,12 @@ public class BombMachineManager : MonoBehaviour
     {
         TriggerRollsByMaterial(objectRiddleMaterial);
         Debug.Log("Object Riddle Done");
+    }
+
+    public void ComputerRiddleDone()
+    {
+        TriggerRollsByMaterial(computerRiddleMaterial);
+        riddlesUp();
     }
     
     public void PhoneRiddleDone()

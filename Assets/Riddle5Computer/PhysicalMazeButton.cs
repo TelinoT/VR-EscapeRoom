@@ -51,6 +51,8 @@ public class PhysicalMazeButton : XRSimpleInteractable
     private void PressDown()
     {
         isPressed = true;
+
+        this.GetComponent<AudioSource>().Play();
         
         // Optional: Play a mechanical click sound
         // GetComponent<AudioSource>()?.Play();
