@@ -27,9 +27,13 @@ public class StickSnapRotation : MonoBehaviour
     private float targetSnappedAngle = 0f;
     private float currentVisualAngle = 0f;
 
+    private bool hasPlayed = false;
+
     void Awake()
     {
         simpleInteractable = GetComponent<XRSimpleInteractable>();
+        
+        currentVisualAngle = targetSnappedAngle;
         
         if (simpleInteractable != null)
         {
@@ -92,6 +96,13 @@ public class StickSnapRotation : MonoBehaviour
                 // Under the hood, this target variable STILL instantly jumps by 15 degrees
                 targetSnappedAngle = Mathf.Round(targetWorldAngle / SNAP_ANGLE) * SNAP_ANGLE;
             }
+            
+            if (currentVisualAngle != targetSnappedAngle && hasPlayed)
+            {
+                this.GetComponent<AudioSource>().Play();
+            }
+
+            hasPlayed = true;
         }
 
         // 2. SMOOTH TRANSIT: Move smoothly from our current visual position to the hard targets
