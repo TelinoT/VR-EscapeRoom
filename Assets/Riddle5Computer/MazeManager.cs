@@ -34,6 +34,8 @@ public class MazeManager : MonoBehaviour
     {
         if (isWon) return;
 
+        if (PoweredOnStuff != null && !PoweredOnStuff.activeInHierarchy) return;
+
         // Calculate the next step
         Vector2 targetPosition = snake.anchoredPosition + (direction * stepSize);
 
