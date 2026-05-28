@@ -11796,6 +11796,8 @@ MonoBehaviour:
   particles: {fileID: 745500577146375058, guid: 2185ac497256b46e18aaf8536c8e4234, type: 3}
   brokenGlass: {fileID: 5183603095012819232, guid: 4b041e748eb82404c8fb2c4c32f82051, type: 3}
   breakForce: 1
+  handKurbel: {fileID: 2129566099}
+  limitedGrab: {fileID: 2129566100}
 --- !u!65 &556908448
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22254,8 +22256,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.9035217, y: 1.9263923, z: 21.541243}
-  m_Center: {x: 0.031636007, y: -0.051875163, z: 8.765108}
+  m_Size: {x: 2.9688444, y: 3.955062, z: 21.541243}
+  m_Center: {x: 0.301714, y: -0.13907073, z: 8.765107}
 --- !u!65 &1100818602
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41009,7 +41011,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7071265101738057537}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb129ba374eb4feaa4ec3ec5053639c, type: 3}
   m_Name: 
@@ -41052,7 +41054,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7071265101738057537}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e19ed4ce46190444ea64e11b74db69aa, type: 3}
   m_Name: 

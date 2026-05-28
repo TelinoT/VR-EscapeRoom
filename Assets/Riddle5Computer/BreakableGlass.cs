@@ -10,6 +10,9 @@ public class BreakableGlass : MonoBehaviour
 
     private bool isBroken = false;
     
+    public HandKurbel handKurbel;
+    public LimitedGrab limitedGrab;
+    
     private void OnCollisionEnter(Collision collision)
     {
         if (isBroken) return;
@@ -31,6 +34,9 @@ public class BreakableGlass : MonoBehaviour
     public void Break()
     {
         isBroken = true;
+
+        handKurbel.enabled = true;
+        limitedGrab.enabled = true;
 
         Instantiate(particles, transform.position, Quaternion.identity);
         Instantiate(brokenGlass, transform.position, transform.rotation);
