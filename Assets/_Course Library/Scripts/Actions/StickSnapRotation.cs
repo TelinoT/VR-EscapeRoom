@@ -4,15 +4,10 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class StickSnapRotation : MonoBehaviour
 {
-    [Header("Setup")]
-    [Tooltip("The parent pivot group (e.g., Pivot_Stick_Middle_Long) that needs to turn.")]
     public Transform pivotToRotate; 
     
-    [Tooltip("Drag the central Sun_lowerHalf transform here.")]
     public Transform centerSun; 
 
-    [Header("Movement Settings")]
-    [Tooltip("The speed the arm glides between mechanical snap slots (degrees per second).")]
     public float travelSpeed = 180f;
 
     private XRSimpleInteractable simpleInteractable;
@@ -23,7 +18,6 @@ public class StickSnapRotation : MonoBehaviour
     private float initialGrabHandAngle = 0f;
     private float initialPivotWorldAngle = 0f;
     
-    // Tracks the targeted 15-degree slot assignment mathematically
     private float targetSnappedAngle = 0f;
     private float currentVisualAngle = 0f;
 
@@ -46,7 +40,6 @@ public class StickSnapRotation : MonoBehaviour
     {
         if (pivotToRotate != null)
         {
-            // Initialize our tracking angles to match the scene placement
             targetSnappedAngle = pivotToRotate.rotation.eulerAngles.y;
             currentVisualAngle = targetSnappedAngle;
         }
@@ -80,7 +73,6 @@ public class StickSnapRotation : MonoBehaviour
     {
         if (pivotToRotate == null) return;
 
-        // 1. Calculate target snapping indices only while actively being dragged
         if (currentInteractor != null && centerSun != null)
         {
             Vector3 handPos = currentInteractor.transform.position;
@@ -93,7 +85,6 @@ public class StickSnapRotation : MonoBehaviour
                 float angleDelta = currentHandAngle - initialGrabHandAngle;
                 float targetWorldAngle = initialPivotWorldAngle + angleDelta;
 
-                // Under the hood, this target variable STILL instantly jumps by 15 degrees
                 targetSnappedAngle = Mathf.Round(targetWorldAngle / SNAP_ANGLE) * SNAP_ANGLE;
             }
             
@@ -104,12 +95,8 @@ public class StickSnapRotation : MonoBehaviour
 
             hasPlayed = true;
         }
-
-        // 2. SMOOTH TRANSIT: Move smoothly from our current visual position to the hard targets
-        // Mathf.MoveTowardsAngle automatically handles 360 to 0 wrap-arounds smoothly!
+        
         currentVisualAngle = Mathf.MoveTowardsAngle(currentVisualAngle, targetSnappedAngle, travelSpeed * Time.deltaTime);
-
-        // 3. Force the clean world coordinate translation onto the parent transform row
         pivotToRotate.rotation = Quaternion.Euler(0, currentVisualAngle, 0);
     }
 
